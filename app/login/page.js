@@ -1,15 +1,39 @@
 'use client'
 
-import { useRouter } from 'next/navigation'
+import { useRouter, useSearchParams } from 'next/navigation'
+import { useEffect } from 'react'
+import { useAuth } from '@/context/AuthContext'
 
 export default function LoginPage() {
   const router = useRouter()
+  const searchParams = useSearchParams()
+  const { isAuthenticated, isLoading, login } = useAuth()
+
+  useEffect(() => {
+    if (!isLoading && isAuthenticated) {
+      router.push('/')
+    }
+  }, [isAuthenticated, isLoading, router])
 
   const handleLogin = e => {
     e.preventDefault()
-    document.cookie = 'auth=true; path=/'
-    router.refresh()
-    router.push('/checkout')
+    const redirectUrl = searchParams.get('redirect') || '/checkout'
+    login()
+    router.push(redirectUrl)
+  }
+
+  if (isLoading) {
+    return (
+      <div className="flex items-center justify-center min-h-screen">
+        <div className="text-2xl font-semibold text-gray-500 dark:text-gray-400">
+          Loading...
+        </div>
+      </div>
+    )
+  }
+
+  if (isAuthenticated) {
+    return null
   }
 
   return (

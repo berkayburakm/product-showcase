@@ -1,15 +1,24 @@
 'use client'
 
 import Link from 'next/link'
-import { FiShoppingCart, FiHeart } from 'react-icons/fi'
+import { FiShoppingCart, FiHeart, FiLogOut } from 'react-icons/fi'
 import ThemeSwitch from './ThemeSwitch'
 import { useCart } from '@/context/CartContext'
 import { useFavorites } from '@/context/FavoritesContext'
+import { useAuth } from '@/context/AuthContext'
+import { useRouter } from 'next/navigation'
 
 export default function Navbar() {
   const { state: cartState, isInitialLoad: isCartLoading } = useCart()
   const { state: favoritesState, isInitialLoad: isFavoritesLoading } =
     useFavorites()
+  const { isAuthenticated, logout } = useAuth()
+  const router = useRouter()
+
+  const handleLogout = () => {
+    logout()
+    router.push('/')
+  }
 
   const totalCartItems = cartState.items.length
   const totalFavorites = favoritesState.items.length
@@ -23,10 +32,11 @@ export default function Navbar() {
           href="/"
           className="text-2xl font-bold text-gray-800 transition-colors duration-200 dark:text-white hover:text-amber-600 dark:hover:text-amber-400"
         >
-          PS
+          Product Showcase
         </Link>
         <div className="flex items-center space-x-6">
           <ThemeSwitch />
+
           <Link
             href="/favorites"
             className={`relative p-2 text-gray-700 transition-all duration-200 bg-gray-100 rounded-full dark:bg-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-600 hover:scale-110 ${
@@ -53,6 +63,15 @@ export default function Navbar() {
               </span>
             )}
           </Link>
+          {isAuthenticated && (
+            <button
+              onClick={handleLogout}
+              className="p-2 text-gray-700 transition-all duration-200 bg-gray-100 rounded-full cursor-pointer dark:bg-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-600 hover:scale-110"
+              title="Logout"
+            >
+              <FiLogOut size={18} />
+            </button>
+          )}
         </div>
       </div>
     </nav>
