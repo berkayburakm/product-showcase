@@ -8,6 +8,7 @@ export default function LoginPage() {
   const handleLogin = e => {
     e.preventDefault()
     document.cookie = 'auth=true; path=/'
+    router.refresh()
     router.push('/checkout')
   }
 

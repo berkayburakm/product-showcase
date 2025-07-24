@@ -33,4 +33,4 @@ The reason we used the Context API is that this project isn't complex enough to 
 
 ## Hosted Demo
 
-A hosted demo of this application is available at [your-demo-link.com](https://your-demo-link.com).
+A hosted demo of this application is available at [https://product-showcase-swart.vercel.app/](https://product-showcase-swart.vercel.app/).
