@@ -23,7 +23,7 @@ export default function Navbar() {
           href="/"
           className="text-2xl font-bold text-gray-800 transition-colors duration-200 dark:text-white hover:text-amber-600 dark:hover:text-amber-400"
         >
-          Product Showcase
+          PS
         </Link>
         <div className="flex items-center space-x-6">
           <ThemeSwitch />

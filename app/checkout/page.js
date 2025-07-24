@@ -4,6 +4,7 @@ import { useCart } from '@/context/CartContext'
 import { FaTrash, FaPlus, FaMinus, FaShoppingCart } from 'react-icons/fa'
 import Loading from '../loading'
 import Link from 'next/link'
+import Image from 'next/image'
 
 export default function CheckoutPage() {
   const { state, dispatch, isInitialLoad: isCartLoading } = useCart()
@@ -59,12 +60,12 @@ export default function CheckoutPage() {
                 Your cart is empty
               </h2>
               <p className="mb-8 text-gray-500 dark:text-gray-400">
-                Looks like you haven't added anything to your cart yet.
+                {"Looks like you haven't added anything to your cart yet."}
               </p>
 
               <Link href="/">
                 <button className="px-4 py-2 text-sm font-medium text-white transition-all duration-300 rounded-lg cursor-pointer bg-amber-600 hover:bg-amber-700 dark:bg-amber-500 dark:hover:bg-amber-600">
-                  Let's go shopping
+                  {"Let's go shopping!"}
                 </button>
               </Link>
             </div>
@@ -79,15 +80,20 @@ export default function CheckoutPage() {
                     className="flex items-center justify-between p-4 rounded-lg bg-gray-50 dark:bg-gray-700/50"
                   >
                     <div className="flex items-center space-x-4">
-                      <img
+                      <Image
+                        width={64}
+                        height={64}
                         src={item.image}
                         alt={item.title}
                         className="object-contain w-16 h-16 rounded-lg"
                       />
                       <div className="flex flex-col items-start gap-2">
-                        <h3 className="text-lg font-semibold text-gray-800 dark:text-white line-clamp-1">
+                        <Link
+                          href={`/product/${item.id}`}
+                          className="text-lg font-semibold text-gray-800 dark:text-white line-clamp-1"
+                        >
                           {item.title}
-                        </h3>
+                        </Link>
                         <p className="text-gray-600 dark:text-gray-300">
                           ${item.price}
                         </p>

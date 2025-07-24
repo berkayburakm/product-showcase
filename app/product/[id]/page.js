@@ -1,6 +1,7 @@
 import AddToCartButton from '@/components/AddToCartButton'
 import { FaStar, FaCheckCircle } from 'react-icons/fa'
 import FavoriteButton from '@/components/FavoriteButton'
+import Image from 'next/image'
 
 async function getProduct(id) {
   const res = await fetch(`https://fakestoreapi.com/products/${id}`)
@@ -11,7 +12,8 @@ async function getProduct(id) {
 }
 
 export default async function ProductPage({ params }) {
-  const product = await getProduct(params.id)
+  const { id } = await params
+  const product = await getProduct(id)
 
   if (!product) {
     return <div>Product not found</div>
@@ -22,10 +24,12 @@ export default async function ProductPage({ params }) {
       <div className="container px-4 mx-auto">
         <div className="grid items-start grid-cols-1 gap-12 lg:grid-cols-2">
           <div className="p-8 bg-white shadow-xl rounded-2xl">
-            <img
+            <Image
               src={product.image}
               alt={product.title}
               className="object-contain w-full h-auto max-h-[70vh] rounded-lg"
+              width={400}
+              height={400}
             />
           </div>
           <div className="flex flex-col items-start space-y-6">

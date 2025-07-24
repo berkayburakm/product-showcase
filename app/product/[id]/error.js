@@ -7,7 +7,9 @@ export default function ProductError({ reset }) {
         Something went wrong
       </h1>
       <p className="mb-6 text-gray-600">
-        We couldn't load the product details right now. Please try again later.
+        {
+          "We couldn't load the product details right now. Please try again later."
+        }
       </p>
       <button
         onClick={reset}

@@ -5,6 +5,7 @@ import { FaStar, FaShoppingCart, FaHeart, FaRegHeart } from 'react-icons/fa'
 import { useCart } from '@/context/CartContext'
 import { useFavorites } from '@/context/FavoritesContext'
 import toast from 'react-hot-toast'
+import Image from 'next/image'
 
 export default function ProductCard({ product }) {
   const { dispatch: cartDispatch } = useCart()
@@ -47,7 +48,9 @@ export default function ProductCard({ product }) {
             <FaRegHeart className="text-gray-500" />
           )}
         </button>
-        <img
+        <Image
+          width={200}
+          height={200}
           src={product.image}
           alt={product.title}
           className="object-contain w-full h-56 transition-transform duration-300 group-hover:scale-105"
