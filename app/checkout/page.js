@@ -37,7 +37,7 @@ export default function CheckoutPage() {
   return (
     <div className="w-full min-h-screen bg-gray-100 dark:bg-gray-900">
       <div className="flex items-center justify-between bg-white shadow-sm dark:bg-gray-800">
-        <div className="container flex items-center justify-between py-4 mx-auto">
+        <div className="container flex items-center justify-between p-4 mx-auto">
           <h1 className="text-xl font-bold text-gray-800 dark:text-white">
             My Cart {state.items.length > 0 && `(${state.items.length})`}
           </h1>
@@ -71,7 +71,7 @@ export default function CheckoutPage() {
             </div>
           </div>
         ) : (
-          <div className="grid grid-cols-1 gap-8 mt-8 lg:grid-cols-3">
+          <div className="grid grid-cols-1 gap-8 px-4 mt-8 lg:grid-cols-3">
             <div className="p-6 bg-white rounded-lg shadow-md lg:col-span-2 dark:bg-gray-800">
               <div className="space-y-4">
                 {state.items.map(item => (
@@ -125,7 +125,7 @@ export default function CheckoutPage() {
                         </div>
                       </div>
                     </div>
-                    <div className="flex items-center space-x-4">
+                    <div className="flex flex-col items-start space-x-4 md:items-center md:flex-row">
                       <span className="text-xl font-bold text-dark-600 dark:text-dark-400">
                         ${(item.price * item.quantity).toFixed(2)}
                       </span>

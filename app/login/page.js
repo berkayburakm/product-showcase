@@ -9,16 +9,11 @@ export default function LoginPage() {
   const searchParams = useSearchParams()
   const { isAuthenticated, isLoading, login } = useAuth()
 
-  useEffect(() => {
-    if (!isLoading && isAuthenticated) {
-      router.push('/')
-    }
-  }, [isAuthenticated, isLoading, router])
-
   const handleLogin = e => {
     e.preventDefault()
     const redirectUrl = searchParams.get('redirect') || '/checkout'
     login()
+    router.refresh()
     router.push(redirectUrl)
   }
 

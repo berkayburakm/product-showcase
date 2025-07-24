@@ -26,15 +26,15 @@ export default function Navbar() {
   const isLoading = isCartLoading || isFavoritesLoading
 
   return (
-    <nav className="w-full p-4 transition-colors duration-300 bg-white border-b border-gray-200 shadow-lg dark:bg-gray-800 dark:border-gray-700">
-      <div className="container flex items-center justify-between mx-auto">
+    <nav className="w-full py-4 transition-colors duration-300 bg-white border-b border-gray-200 shadow-lg dark:bg-gray-800 dark:border-gray-700">
+      <div className="container flex items-center justify-between px-4 mx-auto">
         <Link
           href="/"
           className="text-2xl font-bold text-gray-800 transition-colors duration-200 dark:text-white hover:text-amber-600 dark:hover:text-amber-400"
         >
-          Product Showcase
+          PS
         </Link>
-        <div className="flex items-center space-x-6">
+        <div className="flex items-center gap-4">
           <ThemeSwitch />
 
           <Link
@@ -50,7 +50,7 @@ export default function Navbar() {
               </span>
             )}
           </Link>
-          <Link
+          <a
             href="/checkout"
             className={`relative p-2 text-gray-700 transition-all duration-200 bg-gray-100 rounded-full dark:bg-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-600 hover:scale-110 ${
               isLoading ? 'pointer-events-none opacity-50' : ''
@@ -62,7 +62,7 @@ export default function Navbar() {
                 {totalCartItems}
               </span>
             )}
-          </Link>
+          </a>
           {isAuthenticated && (
             <button
               onClick={handleLogout}
